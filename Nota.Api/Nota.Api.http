@@ -1,0 +1,16 @@
+@Nota.Api_HostAddress = http://localhost:5193
+
+GET {{Nota.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{Nota.Api_HostAddress}}/api/Notes
+Accept: application/json
+
+###
+
+GET {{Nota.Api_HostAddress}}/api/Notes/1
+Accept: application/json
+
+###
