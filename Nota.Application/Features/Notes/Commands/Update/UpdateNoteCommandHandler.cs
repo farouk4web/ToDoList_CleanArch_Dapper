@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Nota.Application.Interfaces;
+using Nota.Application.Mapping;
 using Nota.Domain.Entities;
 
 namespace Nota.Application.Features.Notes.Commands.Update
@@ -19,15 +20,7 @@ namespace Nota.Application.Features.Notes.Commands.Update
             if (!isExist)
                 throw new KeyNotFoundException("Note not found");
 
-            var updatedNote = new Note()
-            {
-                Id = request.Id,
-                Title = request.Title,
-                Color = request.Color,
-                Content = request.Content
-            };
-
-            return await _unitOfWork.Repository<Note>().UpdateAsync(updatedNote); ;
+            return await _unitOfWork.Repository<Note>().UpdateAsync(request.ToDomain()); ;
         }
     }
 }

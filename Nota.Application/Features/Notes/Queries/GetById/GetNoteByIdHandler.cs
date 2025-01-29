@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Nota.Application.Features.Notes.Dtos;
 using Nota.Application.Interfaces;
+using Nota.Application.Mapping;
 using Nota.Domain.Entities;
 
 namespace Nota.Application.Features.Notes.Queries.GetById
@@ -15,7 +16,7 @@ namespace Nota.Application.Features.Notes.Queries.GetById
             if (entityInDb == null)
                 throw new KeyNotFoundException("Note not found");
 
-            return NoteDto.ToDto(entityInDb);
+            return entityInDb.ToDto();
         }
     }
 }

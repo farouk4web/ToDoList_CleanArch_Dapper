@@ -1,4 +1,5 @@
-﻿using Nota.Domain.Entities;
+﻿using Nota.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Nota.Application.Features.Notes.Dtos
 {
@@ -9,19 +10,7 @@ namespace Nota.Application.Features.Notes.Dtos
         public string? Content { get; set; }
         public string? Color { get; set; }
 
-        public static NoteDto ToDto(Note note)
-        {
-            return new NoteDto
-            {
-                Id = note.Id,
-                Color = note.Color,
-                Title = note.Title,
-                Content = note.Content,
-            };
-        }
-
-        public static IEnumerable<NoteDto> ToDto(IEnumerable<Note> notes)
-            => notes.Select(x => ToDto(x));
-
+        [EnumDataType(typeof(Priority))]
+        public Priority Priority { get; set; }
     }
 }
