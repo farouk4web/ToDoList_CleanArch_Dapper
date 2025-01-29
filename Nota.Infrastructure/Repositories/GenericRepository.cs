@@ -118,5 +118,13 @@ namespace Nota.Infrastructure.Repositories
 
             return await _dbConnection.ExecuteAsync(query, new { Id = id });
         }
+
+        public async Task<bool> IsExistAsync(int id)
+        {
+            var query = @$"SELECT 1 FROM {_tableName} 
+                            WHERE Id = @Id AND IsDeleted = 0";
+
+            return id > 0 && await _dbConnection.QuerySingleOrDefaultAsync<int>(query, new { Id = id }) == 1;
+        }
     }
 }

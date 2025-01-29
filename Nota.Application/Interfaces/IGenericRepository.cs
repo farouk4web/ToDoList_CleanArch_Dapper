@@ -11,5 +11,6 @@ namespace Nota.Application.Interfaces
         Task<int> AddAsync(T entity);
         Task<int> UpdateAsync(T entity);
         Task<int> ToggleDeleteAsync(int id);
+        Task<bool> IsExistAsync(int id);
     }
 }
