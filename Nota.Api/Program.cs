@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Nota.Api.Middlewares;
 using Nota.Application.Features.Notes.Queries.GetList;
 using Nota.Application.Interfaces;
 using Nota.Infrastructure.Repositories;
@@ -18,6 +19,7 @@ builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection(builder.Con
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
