@@ -12,6 +12,8 @@ namespace Nota.Application.Features.Notes.Queries.GetById
         public async Task<NoteDto> Handle(GetNoteByIdQuery request, CancellationToken cancellationToken)
         {
             var entityInDb = await _unitOfWork.Repository<Note>().GetByIdAsync(request.Id);
+            if (entityInDb == null)
+                throw new KeyNotFoundException("Note not found");
 
             return NoteDto.ToDto(entityInDb);
         }

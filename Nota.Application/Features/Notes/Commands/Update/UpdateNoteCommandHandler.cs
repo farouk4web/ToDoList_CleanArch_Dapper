@@ -15,6 +15,10 @@ namespace Nota.Application.Features.Notes.Commands.Update
 
         public async Task<int> Handle(UpdateNoteCommand request, CancellationToken cancellationToken)
         {
+            bool isExist = await _unitOfWork.Repository<Note>().IsExistAsync(request.Id);
+            if (!isExist)
+                throw new KeyNotFoundException("Note not found");
+
             var updatedNote = new Note()
             {
                 Id = request.Id,

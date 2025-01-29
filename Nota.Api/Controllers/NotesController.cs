@@ -25,74 +25,34 @@ namespace Nota.Api.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
-                var result = await _mediator.Send(new GetNoteByIdQuery() { Id = id });
+            var result = await _mediator.Send(new GetNoteByIdQuery() { Id = id });
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(new
-                {
-                    error = ex.Message
-                });
-            }
+            return Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateNoteCommand command)
         {
-            try
-            {
-                var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command);
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(new
-                {
-                    error = ex.Message
-                });
-            }
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateNoteCommand command)
         {
-            try
-            {
-                var result = await _mediator.Send(command);
+            var result = await _mediator.Send(command);
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(new
-                {
-                    error = ex.Message
-                });
-            }
+            return Ok(result);
         }
 
 
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> ToggleDelete(int id)
         {
-            try
-            {
-                var result = await _mediator.Send(new ToggleDeleteNoteCommand() { Id = id });
+            var result = await _mediator.Send(new ToggleDeleteNoteCommand() { Id = id });
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(new
-                {
-                    error = ex.Message
-                });
-            }
+            return Ok(result);
         }
     }
 }

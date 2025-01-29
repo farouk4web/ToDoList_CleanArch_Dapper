@@ -15,6 +15,10 @@ namespace Nota.Application.Features.Notes.Commands.Delete
 
         public async Task<int> Handle(ToggleDeleteNoteCommand request, CancellationToken cancellationToken)
         {
+            bool isExist = await _unitOfWork.Repository<Note>().IsExistAsync(request.Id);
+            if (!isExist)
+                throw new KeyNotFoundException("Note not found");
+
             return await _unitOfWork.Repository<Note>().ToggleDeleteAsync(request.Id);
         }
     }
